@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background Layer (to ensure overall padding if needed, but let's just use the viewBox) -->
+  <rect width="800" height="500" fill="#11111b"/>
+
+  <!-- Window -->
+  <g filter="url(#shadow)">
+    <!-- Window Background -->
+    <rect x="40" y="40" width="720" height="420" rx="10" fill="#1e1e2e"/>
+    
+    <!-- Title Bar -->
+    <path d="M40 50 C40 44.47 44.47 40 50 40 L750 40 C755.52 40 760 44.47 760 50 L760 80 L40 80 Z" fill="#181825"/>
+    
+    <!-- Window Controls -->
+    <circle cx="65" cy="60" r="6" fill="#f38ba8"/>
+    <circle cx="85" cy="60" r="6" fill="#f9e2af"/>
+    <circle cx="105" cy="60" r="6" fill="#a6e3a1"/>
+    
+    <!-- Title Text -->
+    <text x="400" y="65" fill="#a6adc8" font-family="'Courier New', Courier, monospace" font-size="14" font-weight="bold" text-anchor="middle">flavio@epitech: ~/42sh</text>
+
+    <!-- Terminal Content -->
+    <g font-family="'Courier New', Courier, monospace" font-size="16" font-weight="500" transform="translate(60, 110)">
+      <text y="0">
+        <tspan fill="#a6e3a1" font-weight="bold">flavio@epitech</tspan>
+        <tspan fill="#cdd6f4">:</tspan>
+        <tspan fill="#89b4fa" font-weight="bold">~/42sh</tspan>
+        <tspan fill="#cdd6f4">$ ./42sh</tspan>
+      </text>
+      
+      <text y="35">
+        <tspan fill="#f38ba8" font-weight="bold">[42sh]</tspan>
+        <tspan fill="#89dceb" font-weight="bold"> > </tspan>
+        <tspan fill="#cdd6f4">ls -la --color=auto</tspan>
+      </text>
+      
+      <text y="65" fill="#cdd6f4">total 112</text>
+      <text y="85" fill="#cdd6f4">drwxr-xr-x 10 flavio student   320 May  9 10:00 <tspan fill="#89b4fa" font-weight="bold">.</tspan></text>
+      <text y="105" fill="#cdd6f4">drwxr-xr-x  5 flavio student   160 May  9 09:50 <tspan fill="#89b4fa" font-weight="bold">..</tspan></text>
+      <text y="125" fill="#cdd6f4">-rw-r--r--  1 flavio student  1024 May  9 10:00 Makefile</text>
+      <text y="145" fill="#cdd6f4">drwxr-xr-x  8 flavio student   256 May  9 10:00 <tspan fill="#89b4fa" font-weight="bold">src</tspan></text>
+      <text y="165" fill="#cdd6f4">drwxr-xr-x  4 flavio student   128 May  9 10:00 <tspan fill="#89b4fa" font-weight="bold">include</tspan></text>
+      <text y="185" fill="#cdd6f4">-rwxr-xr-x  1 flavio student 84320 May  9 10:00 <tspan fill="#a6e3a1" font-weight="bold">42sh</tspan></text>
+      
+      <text y="230">
+        <tspan fill="#f38ba8" font-weight="bold">[42sh]</tspan>
+        <tspan fill="#89dceb" font-weight="bold"> > </tspan>
+        <tspan fill="#cdd6f4">echo "Hello World" | cat -e</tspan>
+      </text>
+      <text y="260" fill="#cdd6f4">Hello World$</text>
+
+      <text y="305">
+        <tspan fill="#f38ba8" font-weight="bold">[42sh]</tspan>
+        <tspan fill="#89dceb" font-weight="bold"> > </tspan>
+      </text>
+      <!-- Blinking Cursor -->
+      <rect x="95" y="290" width="10" height="20" fill="#cdd6f4">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+  </g>
+</svg>
