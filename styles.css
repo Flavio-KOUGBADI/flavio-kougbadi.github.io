@@ -16,17 +16,34 @@
     --font-main: 'Outfit', sans-serif;
 
     /* Layout & UI */
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
-    --border-color: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(25, 25, 38, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.05);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none !important; /* Use custom cursor */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-brand);
+    border-radius: 10px;
 }
 
 html {
@@ -40,6 +57,26 @@ html {
 body {
     overflow-x: hidden;
     position: relative;
+    background-color: var(--bg-main);
+}
+
+/* Mouse Follower */
+.mouse-follower {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease-out, opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+.mouse-follower.active {
+    transform: translate(-50%, -50%) scale(4);
+    background: white;
 }
 
 /* Background Effects */
@@ -237,6 +274,24 @@ a {
     color: var(--text-main);
 }
 
+.cv-link {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    border: 1px solid var(--primary-color);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    cursor: none !important;
+}
+
+.cv-link:hover {
+    background: var(--gradient-brand);
+    -webkit-text-fill-color: white;
+    transform: scale(1.05);
+}
+
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -341,23 +396,27 @@ a {
 }
 
 .stat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     padding: 2rem;
     border-radius: var(--radius-md);
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: var(--transition);
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .stat-card h3 {
-    font-size: 3rem;
-    color: var(--primary-color);
+    font-size: 3.5rem;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
 
@@ -369,50 +428,63 @@ a {
 }
 
 .skill-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem 2rem;
     border-radius: var(--radius-md);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
-.skill-card::before {
+.skill-card::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 100%;
     background: var(--gradient-brand);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
+    opacity: 0;
+    z-index: -1;
+    transition: var(--transition);
 }
 
 .skill-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    border-color: transparent;
 }
 
-.skill-card:hover::before {
-    transform: scaleX(1);
+.skill-card:hover::after {
+    opacity: 0.05;
 }
 
-.skill-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
+.skill-card:hover .skill-icon,
+.skill-card:hover .skill-icon-cplusplus {
+    transform: scale(1.1) rotate(5deg);
+    color: var(--primary-color);
 }
 
+.skill-icon,
 .skill-icon-cplusplus {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
-    display: inline-block;
+    transition: var(--transition);
+    animation: float-icon 4s ease-in-out infinite;
 }
+
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.skill-card:nth-child(2) .skill-icon,
+.skill-card:nth-child(2) .skill-icon-cplusplus { animation-delay: 0.5s; }
+.skill-card:nth-child(3) .skill-icon,
+.skill-card:nth-child(3) .skill-icon-cplusplus { animation-delay: 1s; }
+.skill-card:nth-child(4) .skill-icon,
+.skill-card:nth-child(4) .skill-icon-cplusplus { animation-delay: 1.5s; }
 
 .skill-card h3 {
     font-size: 1.5rem;
@@ -458,96 +530,117 @@ a {
 }
 
 .project-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: var(--transition);
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(99, 102, 241, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-15px);
+    border-color: var(--primary-color);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
 .project-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     overflow: hidden;
     background: var(--bg-secondary);
+    position: relative;
+}
+
+.project-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));
 }
 
 .project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .project-card:hover .project-image img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .project-info {
-    padding: 2rem;
+    padding: 2.5rem 2rem;
 }
 
 .project-tech {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     flex-wrap: wrap;
 }
 
 .project-tech span {
-    font-size: 0.8rem;
-    color: var(--accent-color);
+    font-size: 0.75rem;
+    color: var(--text-main);
     font-family: monospace;
-    background: rgba(6, 182, 212, 0.1);
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
+    letter-spacing: -0.5px;
 }
 
 .project-info p {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.7;
 }
 
 .project-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .project-link {
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .project-link:hover {
-    color: var(--primary-color);
+    color: white;
+    transform: translateX(5px);
 }
 
 /* Contact Section */
 .contact-box {
     text-align: center;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
-    background: var(--bg-card);
-    padding: 4rem 2rem;
+    background: var(--glass-bg);
+    padding: 5rem 3rem;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
 }
 
 .contact-box .section-title {
