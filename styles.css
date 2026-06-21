@@ -29,7 +29,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none !important; /* Use custom cursor */
 }
 
 /* Custom Scrollbar */
@@ -58,25 +57,6 @@ body {
     overflow-x: hidden;
     position: relative;
     background-color: var(--bg-main);
-}
-
-/* Mouse Follower */
-.mouse-follower {
-    width: 20px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: transform 0.1s ease-out, opacity 0.3s ease;
-    transform: translate(-50%, -50%);
-}
-
-.mouse-follower.active {
-    transform: translate(-50%, -50%) scale(4);
-    background: white;
 }
 
 /* Background Effects */
@@ -283,7 +263,6 @@ a {
     padding: 0.4rem 1rem;
     border-radius: 50px;
     transition: var(--transition);
-    cursor: none !important;
 }
 
 .cv-link:hover {

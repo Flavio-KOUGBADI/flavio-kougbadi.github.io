@@ -1,24 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Mouse Follower
-    const follower = document.querySelector('.mouse-follower');
-    const interactiveElements = document.querySelectorAll('a, button, .skill-card, .project-card, .stat-card');
 
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        // Use requestAnimationFrame for smoother performance
-        requestAnimationFrame(() => {
-            follower.style.left = x + 'px';
-            follower.style.top = y + 'px';
-        });
-    });
-
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => follower.classList.add('active'));
-        el.addEventListener('mouseleave', () => follower.classList.remove('active'));
-    });
 
     // Parallax Effect for Blobs
     document.addEventListener('mousemove', (e) => {
