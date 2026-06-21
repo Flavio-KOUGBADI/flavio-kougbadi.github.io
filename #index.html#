@@ -167,13 +167,24 @@
                     
                     <div class="cert-card">
                         <div class="cert-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="cert-details">
+                            <h3>Bachelor en expertise informatique</h3>
+                            <p class="cert-issuer">Epitech Bénin</p>
+                            <p class="cert-date">2025 - 2028 | En cours</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
                         <div class="cert-details">
                             <h3>Fondamentaux de la Cybersécurité</h3>
                             <p class="cert-issuer">IBM</p>
                             <p class="cert-date">Obtenu en 2026</p>
-                            <a href="https://www.sololearn.com/certificates/CC-RLXIU6P0" target="_blank" class="cert-link"><i class="fa-solid fa-eye"></i> Voir la certification</a>
+                            <a href="" target="_blank" class="cert-link"><i class="fa-solid fa-eye"></i> Voir la certification</a>
                         </div>
                     </div>
 
@@ -206,19 +217,7 @@
                             <i class="fa-solid fa-code"></i>
                         </div>
                         <div class="cert-details">
-                            <h3>Introduction à C++</h3>
-                            <p class="cert-issuer">Sololearn</p>
-                            <p class="cert-date">Obtenu en 2026</p>
-                            <a href="#" target="_blank" class="cert-link"><i class="fa-solid fa-eye"></i> Voir la certification</a>
-                        </div>
-                    </div>
-
-                    <div class="cert-card">
-                        <div class="cert-icon">
-                            <i class="fa-brands fa-cuttlefish"></i>
-                        </div>
-                        <div class="cert-details">
-                            <h3>C intermédiaire</h3>
+                            <h3>Introduction à C++ / C intermédiaire</h3>
                             <p class="cert-issuer">Sololearn</p>
                             <p class="cert-date">Obtenu en 2026</p>
                             <a href="#" target="_blank" class="cert-link"><i class="fa-solid fa-eye"></i> Voir la certification</a>
