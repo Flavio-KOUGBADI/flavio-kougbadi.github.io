@@ -1,94 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
 
+    // ─── Mobile nav (FIX: was non-functional) ───────────────────────────
+    const menuBtn    = document.getElementById('mobile-menu-btn');
+    const mobileNav  = document.getElementById('mobile-nav');
+    const navOverlay = document.getElementById('nav-overlay');
 
-    // Parallax Effect for Blobs
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
+    function openMenu() {
+        mobileNav.classList.add('open');
+        navOverlay.classList.add('open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        menuBtn.querySelector('i').className = 'fa-solid fa-xmark';
+    }
 
+    function closeMenu() {
+        mobileNav.classList.remove('open');
+        navOverlay.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+    }
+
+    menuBtn.addEventListener('click', () => {
+        mobileNav.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    navOverlay.addEventListener('click', closeMenu);
+
+    // Close drawer when a link is tapped
+    mobileNav.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // ─── Blob parallax ──────────────────────────────────────────────────
+    // FIX: wrapped in prefers-reduced-motion check
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
         const blob1 = document.querySelector('.blob-1');
         const blob2 = document.querySelector('.blob-2');
 
-        if (blob1) blob1.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
-        if (blob2) blob2.style.transform = `translate(${-x * 50}px, ${-y * 50}px)`;
-    });
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            if (blob1) blob1.style.transform = `translate(${x * 40}px, ${y * 40}px)`;
+            if (blob2) blob2.style.transform = `translate(${-x * 40}px, ${-y * 40}px)`;
+        });
+    }
 
-    // Navbar scroll effect
+    // ─── Navbar scroll ──────────────────────────────────────────────────
     const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-        
-        // Active link highlighting
-        highlightNavLink();
-    });
 
-    const highlightNavLink = () => {
+    function updateNavbar() {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        highlightNavLink();
+    }
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+
+    function highlightNavLink() {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         let current = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 150) {
+            if (window.scrollY >= section.offsetTop - 150) {
                 current = section.getAttribute('id');
             }
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
+            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
         });
-    };
-
-    // Initialize navbar state
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
     }
 
-    // Scroll Reveal Animation
+    // ─── Scroll reveal (FIX: motion as enhancement — content visible by default) ──
+    // CSS sets opacity:0 only inside prefers-reduced-motion:no-preference,
+    // so this JS only adds the .active class; no content is ever gated.
     const reveals = document.querySelectorAll('.reveal');
 
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-
-        reveals.forEach((reveal) => {
-            const elementTop = reveal.getBoundingClientRect().top;
-            
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.classList.add('active');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target);
             }
         });
-    };
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
-    window.addEventListener('scroll', revealOnScroll);
-    
-    // Trigger once on load
-    revealOnScroll();
+    reveals.forEach(el => revealObserver.observe(el));
 
-    // Smooth scrolling for anchor links
+    // ─── Smooth scrolling ───────────────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
+        anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            if (targetId === '#') return;
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
