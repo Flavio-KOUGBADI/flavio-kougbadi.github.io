@@ -654,7 +654,7 @@ html.menu-open {
 
 .project-image {
     width: 100%;
-    height: 220px;
+    aspect-ratio: 16/9; /* keep consistent ratio across projects */
     overflow: hidden;
     background: var(--bg-secondary);
     position: relative;
@@ -674,6 +674,7 @@ html.menu-open {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
@@ -1057,9 +1058,6 @@ footer {
         font-size: 1.25rem;
     }
 
-    .project-image {
-        height: 180px;
-    }
 
     .cert-card {
         padding: 1.25rem;
