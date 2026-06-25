@@ -27,32 +27,62 @@
     <div class="blob blob-2"></div>
     <div class="grid-overlay"></div>
 
+    <!-- Mobile nav drawer -->
+    <div class="mobile-nav-overlay" id="nav-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="#about" class="nav-link" data-i18n="nav.about">À propos</a>
+        <a href="#skills" class="nav-link" data-i18n="nav.skills">Compétences</a>
+        <a href="#certifications" class="nav-link" data-i18n="nav.certifications">Certifications</a>
+        <a href="#projects" class="nav-link" data-i18n="nav.projects">Projets</a>
+        <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+        <a href="assets/Flavio_KOUGBADI_CV.pdf" class="nav-link" target="_blank">
+            <i class="fa-solid fa-file-pdf"></i> <span data-i18n="nav.cv">CV</span>
+        </a>
+    </nav>
+
     <header class="navbar">
         <a href="#" class="logo">Flavio<span>.</span></a>
         <nav class="nav-links">
-            <a href="#about" class="nav-link">À propos</a>
-            <a href="#skills" class="nav-link">Compétences</a>
-            <a href="#projects" class="nav-link">Projets</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#about" class="nav-link" data-i18n="nav.about">À propos</a>
+            <a href="#skills" class="nav-link" data-i18n="nav.skills">Compétences</a>
+            <a href="#certifications" class="nav-link" data-i18n="nav.certifications">Certifications</a>
+            <a href="#projects" class="nav-link" data-i18n="nav.projects">Projets</a>
+            <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+            <a href="assets/Flavio_KOUGBADI_CV.pdf" class="nav-link cv-link" target="_blank">
+                <i class="fa-solid fa-file-pdf"></i> <span data-i18n="nav.cv">CV</span>
+            </a>
         </nav>
-        <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <div class="navbar-actions">
+            <button class="lang-toggle-btn" id="lang-toggle-btn" aria-label="Switch language"
+                data-i18n-aria="aria.lang-toggle">
+                <i class="fa-solid fa-globe"></i>
+                <span class="lang-current">EN</span>
+            </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir le menu"
+                aria-expanded="false" data-i18n-aria="aria.menu.open">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </header>
 
     <main>
         <!-- Hero Section -->
         <section id="hero" class="hero">
             <div class="container hero-content reveal">
-                <p class="greeting">Bonjour, je suis</p>
-                <h1 class="name">Flavio KOUGBADI</h1>
-                <h2 class="title">Étudiant en Informatique <span class="gradient-text">@ Epitech Bénin</span></h2>
-                <p class="hero-description">
-                    Passionné par le développement logiciel et les systèmes. Actuellement en 1ère année à Epitech Bénin,
-                    je suis à la recherche de nouvelles opportunités de stage pour mettre en pratique mes compétences et
-                    relever de nouveaux défis.
+                <p class="greeting" data-i18n="hero.greeting">Bonjour, je suis</p>
+                <h1 class="name" data-i18n="hero.name">Flavio KOUGBADI</h1>
+                <h2 class="title">
+                    <span data-i18n="hero.title">Étudiant en Informatique </span>
+                    <span class="accent-text" data-i18n="hero.title.accent">orienté Data & IA</span>
+                </h2>
+                <p class="hero-description" data-i18n="hero.description">
+                    Étudiant en fin de 1ère année à Epitech Bénin, je m'oriente vers la Data et l'IA. Polyvalent, je réalise également du développement web et de la conception d'applications mobiles avec l'aide de l'IA. J'aime automatiser les processus récurrents pour résoudre des problèmes concrets.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-                    <a href="#contact" class="btn btn-secondary">Me contacter</a>
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.cta.projects">Voir mes projets</a>
+                    <a href="assets/Flavio_KOUGBADI_CV.pdf" target="_blank" class="btn btn-secondary">
+                        <i class="fa-solid fa-download"></i> <span data-i18n="hero.cta.cv">Mon CV</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -60,33 +90,39 @@
         <!-- About Section -->
         <section id="about" class="about section">
             <div class="container reveal">
-                <h2 class="section-title">01. <span class="gradient-text">À propos de moi</span></h2>
+                <h2 class="section-title"><span class="accent-text" data-i18n="about.title">À propos de moi</span></h2>
                 <div class="about-content">
                     <div class="about-image">
-                        <img src="assets/profile.png" alt="Flavio KOUGBADI">
+                        <img src="assets/processed_LinkedIn.png" alt="Flavio KOUGBADI">
                     </div>
                     <div class="about-details">
                         <div class="about-text">
-                            <p>
-                                Je suis un étudiant dynamique en 1ère année à <strong>Epitech Bénin</strong>. Mon
-                                parcours m'a permis d'acquérir une forte autonomie grâce à la pédagogie par projets
-                                (PBL).
+                            <p data-i18n="about.p1">
+                                Étudiant en fin de première année à <strong>Epitech Bénin</strong>, je m'oriente activement vers les domaines de la <strong>Data</strong> et de l'<strong>Intelligence Artificielle</strong>.
                             </p>
-                            <p>
-                                J'aime concevoir des architectures logicielles robustes et comprendre comment les choses
-                                fonctionnent sous le capot. C'est pourquoi je me concentre particulièrement sur les
-                                langages de bas niveau et la programmation système.
+                            <p data-i18n="about.p2">
+                                Polyvalent et autonome grâce à la pédagogie par projets (PBL), je réalise également du développement web et j'utilise l'IA pour créer des applications mobiles. Pour moi, coder doit servir à <strong>résoudre des problèmes concrets</strong> et non pas coder pour le simple fait de coder.
+                            </p>
+                            <p data-i18n="about.p3">
+                                Très à l'aise avec la communication et le travail d'équipe, je suis orienté résultats et j'aime particulièrement concevoir des scripts en Python pour automatiser les tâches récurrentes.
                             </p>
                         </div>
+
                         <div class="about-stats">
-                            <div class="stat-card">
-                                <h3>1+</h3>
-                                <p>Années de code intensif</p>
+                            <div class="stat-item">
+                                <strong data-i18n="about.stat1.value">1 an</strong>
+                                <span data-i18n="about.stat1.label">de code intensif</span>
                             </div>
-                            <div class="stat-card">
-                                <h3>10+</h3>
-                                <p>Projets Epitech validés</p>
+                            <div class="stat-item">
+                                <strong data-i18n="about.stat2.value">10+</strong>
+                                <span data-i18n="about.stat2.label">projets Epitech validés</span>
                             </div>
+                        </div>
+
+                        <div class="about-action">
+                            <a href="assets/Flavio_KOUGBADI_CV.pdf" download="Flavio_KOUGBADI_CV.pdf" class="btn btn-primary">
+                                <i class="fa-solid fa-download"></i> <span data-i18n="about.cta">Télécharger mon CV</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -96,45 +132,183 @@
         <!-- Skills Section -->
         <section id="skills" class="skills section">
             <div class="container reveal">
-                <h2 class="section-title">02. <span class="gradient-text">Mes Compétences</span></h2>
-                <div class="skills-grid">
+                <h2 class="section-title"><span class="accent-text" data-i18n="skills.title">Compétences</span></h2>
+                <div class="skills-list">
 
-                    <div class="skill-card">
-                        <i class="fa-brands fa-cuttlefish skill-icon"></i>
-                        <h3>C</h3>
-                        <div class="skill-level">
-                            <span class="level-badge advanced">Niveau Avancé</span>
+                    <div class="skill-group">
+                        <div class="skill-group-label">
+                            <h3 data-i18n="skills.g1.title">Data & IA</h3>
+                            <span class="level-badge beginner" data-i18n="skills.g1.badge">Orienté / Débutant</span>
                         </div>
-                        <p>Maîtrise approfondie, gestion de la mémoire, pointeurs avancés, et appels systèmes Unix.
-                            Certification intermédiaire obtenue.</p>
+                        <div class="skill-group-content">
+                            <p data-i18n="skills.g1.desc">Premiers pas en Data Science à travers la modélisation prédictive (Tardis), l'analyse de données historiques et l'initiation aux concepts de l'IA.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">Jupyter</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <div class="skill-icon-cplusplus">C++</div>
-                        <h3>C++</h3>
-                        <div class="skill-level">
-                            <span class="level-badge beginner">Niveau Débutant</span>
+                    <div class="skill-group">
+                        <div class="skill-group-label">
+                            <h3 data-i18n="skills.g2.title">Python & Automatisation</h3>
+                            <span class="level-badge advanced" data-i18n="skills.g2.badge">Avancé</span>
                         </div>
-                        <p>Programmation orientée objet, STL, templates. Certification débutant obtenue et apprentissage
-                            continu.</p>
+                        <div class="skill-group-content">
+                            <p data-i18n="skills.g2.desc">Développement de scripts d'automatisation pour optimiser les processus récurrents, manipulation de données et algorithmique.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python 3</span>
+                                <span class="skill-tag">Scripts CLI</span>
+                                <span class="skill-tag">Flask</span>
+                                <span class="skill-tag">SQLite</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <i class="fa-brands fa-python skill-icon"></i>
-                        <h3>Python</h3>
-                        <div class="skill-level">
-                            <span class="level-badge intermediate">Niveau Intermédiaire</span>
+                    <div class="skill-group">
+                        <div class="skill-group-label">
+                            <h3 data-i18n="skills.g3.title">Mobile & IA assistée</h3>
+                            <span class="level-badge intermediate" data-i18n="skills.g3.badge">Intermédiaire</span>
                         </div>
-                        <p>Scripts d'automatisation, algorithmique et manipulation de données.</p>
+                        <div class="skill-group-content">
+                            <p data-i18n="skills.g3.desc">Conception et prototypage d'applications mobiles de A à Z (ex : Objectif Bac) assistés par des outils et API d'intelligence artificielle.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Kotlin</span>
+                                <span class="skill-tag">React Native</span>
+                                <span class="skill-tag">Expo</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <i class="fa-brands fa-linux skill-icon"></i>
-                        <h3>Unix / Shell</h3>
-                        <div class="skill-level">
-                            <span class="level-badge advanced">Niveau Avancé</span>
+                    <div class="skill-group">
+                        <div class="skill-group-label">
+                            <h3 data-i18n="skills.g4.title">Développement Web</h3>
+                            <span class="level-badge intermediate" data-i18n="skills.g4.badge">Intermédiaire</span>
                         </div>
-                        <p>Scripting bash, maîtrise de l'environnement Linux, Makefile et compilation.</p>
+                        <div class="skill-group-content">
+                            <p data-i18n="skills.g4.desc">Conception d'interfaces web responsives, dynamiques et modernes orientées expérience utilisateur.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML / CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-label">
+                            <h3 data-i18n="skills.g5.title">Langage C</h3>
+                            <span class="level-badge advanced" data-i18n="skills.g5.badge">Avancé</span>
+                        </div>
+                        <div class="skill-group-content">
+                            <p data-i18n="skills.g5.desc">Bases solides en programmation système Epitech : gestion de la mémoire, pointeurs, appels système Unix.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">C</span>
+                                <span class="skill-tag">C++</span>
+                                <span class="skill-tag">Makefile</span>
+                                <span class="skill-tag">CSFML</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-label">
+                            <h3 data-i18n="skills.g6.title">Unix & Shell</h3>
+                            <span class="level-badge advanced" data-i18n="skills.g6.badge">Avancé</span>
+                        </div>
+                        <div class="skill-group-content">
+                            <p data-i18n="skills.g6.desc">Scripting Shell (Bash), maîtrise complète de l'environnement Linux, Makefile, compilation et gestion de versions.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Bash</span>
+                                <span class="skill-tag">Linux</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">SSH</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications section">
+            <div class="container reveal">
+                <h2 class="section-title"><span class="accent-text" data-i18n="certs.title">Certifications</span></h2>
+                <div class="certifications-grid">
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="cert-details">
+                            <h3 data-i18n="certs.c1.title">Fondamentaux de la Cybersécurité</h3>
+                            <p class="cert-issuer" data-i18n="certs.c1.issuer">IBM</p>
+                            <p class="cert-date">2026</p>
+                            <a href="https://www.credly.com/badges/2de2557a-699e-4caa-9e58-27fd619d223d" target="_blank" class="cert-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="certs.view">Voir la certification</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div class="cert-details">
+                            <h3 data-i18n="certs.c2.title">Maîtrise des Fondamentaux d'Internet</h3>
+                            <p class="cert-issuer" data-i18n="certs.c2.issuer">MTN Academy</p>
+                            <p class="cert-date">2026</p>
+                            <a href="https://github.com/Flavio-KOUGBADI/My-certifications/blob/master/Les_fondamentaux_d_Internet_Certificate.jpg" target="_blank" class="cert-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="certs.view">Voir la certification</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <div class="cert-details">
+                            <h3 data-i18n="certs.c3.title">Développement Web</h3>
+                            <p class="cert-issuer" data-i18n="certs.c3.issuer">Sololearn</p>
+                            <p class="cert-date">2026</p>
+                            <a href="https://www.sololearn.com/certificates/CC-JTX33SAE" target="_blank" class="cert-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="certs.view">Voir la certification</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="cert-details">
+                            <h3 data-i18n="certs.c4.title">Introduction à C++</h3>
+                            <p class="cert-issuer" data-i18n="certs.c4.issuer">Sololearn</p>
+                            <p class="cert-date">2026</p>
+                            <a href="https://www.sololearn.com/certificates/CC-ND3GC32M" target="_blank" class="cert-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="certs.view">Voir la certification</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fa-brands fa-cuttlefish"></i>
+                        </div>
+                        <div class="cert-details">
+                            <h3 data-i18n="certs.c5.title">C intermédiaire</h3>
+                            <p class="cert-issuer" data-i18n="certs.c5.issuer">Sololearn</p>
+                            <p class="cert-date">2026</p>
+                            <a href="https://www.sololearn.com/certificates/CC-RLXIU6P0" target="_blank" class="cert-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="certs.view">Voir la certification</span>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -144,10 +318,9 @@
         <!-- Projects Section -->
         <section id="projects" class="projects section">
             <div class="container reveal">
-                <h2 class="section-title">03. <span class="gradient-text">Mes Projets</span></h2>
+                <h2 class="section-title"><span class="accent-text" data-i18n="projects.title">Projets</span></h2>
 
                 <div class="projects-grid">
-                    <!-- Project 1 -->
                     <div class="project-card">
                         <div class="project-image">
                             <img src="assets/my_hunter.webp" alt="my_hunter screenshot">
@@ -158,16 +331,15 @@
                                 <span>CSFML</span>
                             </div>
                             <h3>my_hunter</h3>
-                            <p>Recréation du célèbre jeu vidéo Duck Hunt. Utilisation de la bibliothèque graphique CSFML
-                                pour la gestion des fenêtres, des sprites, des événements et des animations.</p>
+                            <p data-i18n="projects.p1.desc">Recréation du célèbre jeu vidéo Duck Hunt. Utilisation de la bibliothèque graphique CSFML pour la gestion des fenêtres, des sprites, des événements et des animations.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link"><i
-                                        class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
                     <div class="project-card">
                         <div class="project-image">
                             <img src="assets/my_radar.webp" alt="my_radar screenshot">
@@ -176,20 +348,18 @@
                             <div class="project-tech">
                                 <span>C</span>
                                 <span>CSFML</span>
-                                <span>Maths</span>
+                                <span data-i18n="projects.tag.maths">Maths</span>
                             </div>
                             <h3>my_radar</h3>
-                            <p>Simulation 2D d'un système de radar de contrôle aérien avec de nombreux avions et tours
-                                de contrôle. Optimisation poussée avec un Quadtree pour gérer efficacement les
-                                collisions.</p>
+                            <p data-i18n="projects.p2.desc">Simulation 2D d'un système de radar de contrôle aérien avec de nombreux avions et tours de contrôle. Optimisation avec un Quadtree pour gérer efficacement les collisions.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link"><i
-                                        class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 3 -->
                     <div class="project-card">
                         <div class="project-image">
                             <img src="assets/my_top.webp" alt="top command screenshot">
@@ -197,21 +367,19 @@
                         <div class="project-info">
                             <div class="project-tech">
                                 <span>C</span>
-                                <span>Système</span>
+                                <span data-i18n="projects.tag.system">Système</span>
                                 <span>Ncurses</span>
                             </div>
                             <h3>Top</h3>
-                            <p>Recodage de la commande système `top` sous Linux. Parsing du dossier `/proc` pour
-                                récupérer en temps réel les informations sur les processus et les ressources système.
-                            </p>
+                            <p data-i18n="projects.p3.desc">Recodage de la commande système <code>top</code> sous Linux. Parsing du dossier <code>/proc</code> pour récupérer en temps réel les informations sur les processus et les ressources système.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link"><i
-                                        class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 4 -->
                     <div class="project-card">
                         <div class="project-image">
                             <img src="assets/custom_shell.svg" alt="42sh screenshot">
@@ -223,55 +391,71 @@
                                 <span>Shell</span>
                             </div>
                             <h3>42sh</h3>
-                            <p>Développement d'un interpréteur de commandes Unix (shell) complet de A à Z.
-                                Implémentation des pipes, redirections, variables d'environnement et d'un éditeur de
-                                ligne avancé.
-                            </p>
+                            <p data-i18n="projects.p4.desc">Développement d'un interpréteur de commandes Unix (shell) complet de A à Z. Implémentation des pipes, redirections, variables d'environnement et d'un éditeur de ligne avancé.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link"><i
-                                        class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 5 -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="assets/data_tardis.webp" alt="Data Tardis screenshot">
+                            <img src="assets/data_tardis.webp" alt="Tardis screenshot">
                         </div>
                         <div class="project-info">
                             <div class="project-tech">
                                 <span>Python</span>
-                                <span>Data Science</span>
-                                <span>Machine Learning</span>
+                                <span data-i18n="projects.tag.ml">Machine Learning</span>
+                                <span data-i18n="projects.tag.ds">Data Science</span>
                             </div>
-                            <h3>Data Tardis</h3>
-                            <p>Réalisation d'un modèle de prédiction de retards de train. Traitement de données massives
-                                et implémentation d'algorithmes d'apprentissage automatique en Python.
-                            </p>
+                            <h3>Tardis</h3>
+                            <p data-i18n="projects.p5.desc">Mon tout premier projet en Data Science : création d'un modèle prédictif de retards de train basé sur l'analyse de données historiques de la SNCF.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link"><i
-                                        class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 6 -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="assets/discord_bot_ui.png" alt="Discord Bot Task Manager screenshot">
+                            <img src="assets/objectif_bac.jpg" alt="Objectif Bac screenshot">
                         </div>
                         <div class="project-info">
                             <div class="project-tech">
-                                <span>Python</span>
-                                <span>Discord API</span>
-                                <span>Organisation</span>
+                                <span data-i18n="projects.tag.mobile">Mobile App</span>
+                                <span data-i18n="projects.tag.ai">IA Assistée</span>
+                                <span data-i18n="projects.tag.edu">Éducation</span>
                             </div>
-                            <h3>Bot Discord Task Manager</h3>
-                            <p>Développement d'un bot Discord personnel en Python pour la gestion du temps et l'organisation. Il permet de planifier des journées, de définir les deadlines et l'importance des projets, ainsi que de suivre l'avancée de chaque tâche.</p>
+                            <h3>Objectif Bac</h3>
+                            <p data-i18n="projects.p6.desc">Application mobile développée de A à Z avec assistance de l'IA pour aider mon cousin à réviser ses cours d'Histoire-Géographie la veille du Baccalauréat.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link"><i
-                                        class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/vault.jpg" alt="Vault Linux screenshot">
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tech">
+                                <span>Linux</span>
+                                <span>SysAdmin</span>
+                                <span data-i18n="projects.tag.security">Sécurité</span>
+                            </div>
+                            <h3>Vault</h3>
+                            <p data-i18n="projects.p7.desc">Installation et configuration de serveurs SSH et multimédia sous Rocky OS, sécurisation avec Fail2ban et mise en place d'un reverse proxy Caddy.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Flavio-KOUGBADI" target="_blank" class="project-link">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -284,16 +468,17 @@
         <section id="contact" class="contact section">
             <div class="container reveal">
                 <div class="contact-box">
-                    <h2 class="section-title">04. <span class="gradient-text">Contact</span></h2>
-                    <p>Je suis actuellement à la recherche d'un stage pour consolider mes acquis et apporter ma valeur à
-                        votre équipe. N'hésitez pas à me contacter !</p>
-                    <a href="mailto:flaviokougbadi2018@gmail.com" class="btn btn-primary btn-large">Dites Bonjour</a>
+                    <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+                    <p data-i18n="contact.text">Je suis à la recherche d'un stage pour consolider mes acquis et apporter ma valeur à votre équipe. N'hésitez pas à me contacter.</p>
+                    <a href="mailto:flaviokougbadi2018@gmail.com" class="btn btn-primary btn-large" data-i18n="contact.cta">Dites bonjour</a>
 
                     <div class="social-links">
-                        <a href="https://github.com/Flavio-KOUGBADI" target="_blank" aria-label="GitHub"><i
-                                class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/flavio-kougbadi-06235838a/" target="_blank"
-                            aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/Flavio-KOUGBADI" target="_blank" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/flavio-kougbadi-06235838a/" target="_blank" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -302,7 +487,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Flavio KOUGBADI. Conçu et développé avec passion.</p>
+            <p data-i18n="footer">&copy; 2026 Flavio KOUGBADI. Conçu et développé avec passion.</p>
         </div>
     </footer>
 
