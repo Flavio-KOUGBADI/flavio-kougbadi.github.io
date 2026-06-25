@@ -409,15 +409,10 @@ a {
 /* --- FIX 4: Simplifier le verrouillage du scroll --- */
 body.menu-open {
     overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-    position: fixed; /* Gardé pour iOS, mais on va simplifier le JS */
 }
 
 html.menu-open {
     overflow: hidden;
-    /* FIX: prevent the page from being scrolled via keyboard / wheel */
-    overscroll-behavior: none;
 }
 
 /* Hero Section */
