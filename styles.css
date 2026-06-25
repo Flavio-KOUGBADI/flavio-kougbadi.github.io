@@ -45,8 +45,6 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
     position: relative;
-    /* Supprime le rebond élastique sur iOS qui donne l'impression que le site flotte */
-    overscroll-behavior-y: none; 
 }
 
 html {
