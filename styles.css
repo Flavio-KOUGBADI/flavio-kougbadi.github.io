@@ -40,6 +40,15 @@
     border-radius: 10px;
 }
 
+/* --- FIX 1: Empêcher radicalement le mouvement latéral --- */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    /* Supprime le rebond élastique sur iOS qui donne l'impression que le site flotte */
+    overscroll-behavior-y: none; 
+}
+
 html {
     scroll-behavior: smooth;
     background-color: var(--bg-main);
@@ -49,18 +58,29 @@ html {
 }
 
 body {
-    overflow-x: hidden;
-    position: relative;
     background-color: var(--bg-main);
 }
 
+/* --- FIX: Force tout le contenu à respecter la largeur du parent --- */
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.project-card, .cert-card, .skill-group {
+    width: 100%;
+    box-sizing: border-box; /* Important pour inclure le padding dans la largeur */
+}
+
 /* Background Effects */
+/* --- FIX 2: Stabiliser les blobs (les cacher sur petit mobile) --- */
 .blob {
     position: absolute;
     filter: blur(100px);
     z-index: -1;
     opacity: 0.3;
     border-radius: 50%;
+    pointer-events: none; /* Crucial: ne doit pas intercepter les clics */
 }
 
 /* FIX: blob animation wrapped in prefers-reduced-motion */
@@ -135,14 +155,14 @@ a {
     justify-content: center;
 }
 
-/* FIX: section-title — removed 01/02/03 eyebrow numbers in HTML;
-   here we clean the display style to match plain titles */
+/* --- FIX 3: Titres de section qui cassent le layout --- */
 .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100%; /* S'assure qu'il ne dépasse pas */
     opacity: 0.9;
     text-wrap: balance;
 }
@@ -386,12 +406,12 @@ a {
     display: block;
 }
 
-/* FIX: lock body scroll when mobile menu is open.
-   `overflow: hidden` on html+body prevents background scroll;
-   `overscroll-behavior: contain` prevents scroll chaining. */
+/* --- FIX 4: Simplifier le verrouillage du scroll --- */
 body.menu-open {
     overflow: hidden;
-    /* On iOS Safari, also need to lock html */
+    height: 100vh;
+    width: 100vw;
+    position: fixed; /* Gardé pour iOS, mais on va simplifier le JS */
 }
 
 html.menu-open {
@@ -933,6 +953,22 @@ footer {
     .contact-box {
         padding: 2rem 0;
     }
+
+    /* FIX 2: On les enlève sur mobile pour stopper les calculs de rendu inutiles */
+    .blob {
+        display: none;
+    }
+
+    /* FIX: Ajustement de la grille de compétences pour mobile */
+    .skill-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .skill-group-label {
+        width: 100%;
+    }
 }
 
 /* Small phones — 480px and below */
@@ -973,6 +1009,11 @@ footer {
     .section-title {
         font-size: 1.7rem;
         margin-bottom: 2rem;
+    }
+
+    /* FIX 3: Sur petit mobile, on retire la ligne décorative si elle pousse le contenu */
+    .section-title::after {
+        display: none;
     }
 
     .name {
