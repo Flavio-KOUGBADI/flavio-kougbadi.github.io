@@ -214,8 +214,22 @@ a {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    transition: var(--transition);
+    /* FIX: transition only specific properties, not `all`
+       (`all` causes reflow / layout shift when unrelated props change) */
+    transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                backdrop-filter 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                padding 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     background: transparent;
+    /* Ensure the navbar itself never blocks pointer events on its children */
+    pointer-events: none;
+}
+
+/* All interactive children re-enable pointer events */
+.navbar > a,
+.navbar > nav,
+.navbar > .navbar-actions {
+    pointer-events: auto;
 }
 
 .navbar.scrolled {
@@ -325,14 +339,22 @@ a {
     top: 0;
     right: 0;
     width: 260px;
+    /* FIX: 100vh fallback THEN 100dvh override — dvh handles mobile
+       browser UI bars (address bar show/hide) without jitter.
+       Browsers that don't understand dvh ignore it and use vh. */
     height: 100vh;
+    height: 100dvh;
     background: rgba(10, 10, 15, 0.97);
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-left: 1px solid var(--border-color);
-    z-index: 999;
+    z-index: 1001; /* FIX: above navbar (1000) so drawer covers it */
     padding: 5rem 2rem 2rem;
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    /* FIX: prevent scroll chaining to body when drawer content reaches end */
+    overscroll-behavior: contain;
+    overflow-y: auto;
 }
 
 .mobile-nav.open {
@@ -354,12 +376,28 @@ a {
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 998;
-    background: rgba(0,0,0,0.4);
+    z-index: 1000; /* FIX: same as navbar, below drawer (1001) */
+    background: rgba(0,0,0,0.55);
+    /* FIX: prevent scroll chaining from overlay to body */
+    overscroll-behavior: contain;
 }
 
 .mobile-nav-overlay.open {
     display: block;
+}
+
+/* FIX: lock body scroll when mobile menu is open.
+   `overflow: hidden` on html+body prevents background scroll;
+   `overscroll-behavior: contain` prevents scroll chaining. */
+body.menu-open {
+    overflow: hidden;
+    /* On iOS Safari, also need to lock html */
+}
+
+html.menu-open {
+    overflow: hidden;
+    /* FIX: prevent the page from being scrolled via keyboard / wheel */
+    overscroll-behavior: none;
 }
 
 /* Hero Section */

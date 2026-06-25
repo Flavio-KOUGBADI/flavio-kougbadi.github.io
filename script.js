@@ -253,12 +253,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNav  = document.getElementById('mobile-nav');
     const navOverlay = document.getElementById('nav-overlay');
 
+    // FIX: preserve scroll position across the open/close cycle.
+    // On iOS Safari, `overflow: hidden` alone does NOT prevent touch scroll.
+    // The bulletproof pattern is `position: fixed` on body + restore on close.
+    let savedScrollY = 0;
+
     function openMenu() {
+        // Save current scroll position BEFORE locking the body
+        savedScrollY = window.scrollY;
+
         mobileNav.classList.add('open');
         navOverlay.classList.add('open');
         menuBtn.setAttribute('aria-expanded', 'true');
         menuBtn.setAttribute('aria-label', translations[currentLang]['aria.menu.close']);
         menuBtn.querySelector('i').className = 'fa-solid fa-xmark';
+
+        // FIX: lock background scroll (html + body) so the hero text
+        // cannot shift or scroll behind the drawer.
+        document.documentElement.classList.add('menu-open');
+        document.body.classList.add('menu-open');
+
+        // FIX: iOS Safari touch-scroll lock — `position: fixed` on body
+        // is the only reliable way to stop touch scroll. We compensate
+        // for the visual jump by setting `top: -savedScrollY`.
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${savedScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
     }
 
     function closeMenu() {
@@ -267,6 +289,29 @@ document.addEventListener('DOMContentLoaded', () => {
         menuBtn.setAttribute('aria-expanded', 'false');
         menuBtn.setAttribute('aria-label', translations[currentLang]['aria.menu.open']);
         menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+
+        // FIX: release background scroll lock.
+        document.documentElement.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
+
+        // FIX: restore body positioning, then jump back to saved scroll.
+        // We temporarily disable `html { scroll-behavior: smooth }` because
+        // even `behavior: 'instant'` is overridden by the CSS rule in some
+        // browsers (notably Chromium <120 and iOS Safari <16.4).
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+
+        const htmlEl = document.documentElement;
+        const prevBehavior = htmlEl.style.scrollBehavior;
+        htmlEl.style.scrollBehavior = 'auto';
+        window.scrollTo(0, savedScrollY);
+        // Restore on next frame so the scrollTo commits before smooth returns
+        requestAnimationFrame(() => {
+            htmlEl.style.scrollBehavior = prevBehavior;
+        });
     }
 
     menuBtn.addEventListener('click', () => {
